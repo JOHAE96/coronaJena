@@ -27,6 +27,8 @@ df.7days <- data.frame(
 
 
 plot(df.7days[seit:no.rows,], xlab = "date", ylab = "7 Tage index", main = "7-Tage Index", col=ifelse(df.7days[seit:no.rows,2] > 50, "red", ifelse(df.7days[seit:no.rows,2] > 35 , "yellow", "black")), pch = ifelse(df.7days[seit:no.rows,2] > 35,19,1))
+abline(h = 35, col = 'yellow3', lwd = 1)
+abline(h = 50, col = 'coral2', lwd = 1)
 grid()
 print("Datum:")
 print(df.7days[no.rows,1])
@@ -39,6 +41,7 @@ df.neu.aktiv <- data.frame(
   neu <- corona$neu_erkrankte - rollapply(corona$genesene, 2, diff, fill = NA, align = "right", by.column=FALSE)
 )
 plot(df.neu.aktiv[seit:no.rows,], xlab = "date", ylab = "neu aktiv", main = "neu aktive fälle")
+abline(h = 0, col = 'coral2', lwd = 1)
 grid()
 
 df.neu.aktiv.7day <- data.frame(
@@ -46,6 +49,7 @@ df.neu.aktiv.7day <- data.frame(
   neu <- rollsumr(corona$neu_erkrankte - rollapply(corona$genesene, 2, diff, fill = NA, align = "right", by.column=FALSE), k = 7, fill = NA) *100000/108127 # Einwohner Zahl 19.10.2020 laut jena.de/corona leider keine open data quelle
 )
 plot(df.neu.aktiv.7day[seit:no.rows,], xlab = "date", ylab = "neu aktiv 7 tage", main = "neu aktiv in den letzen 7 Tagen")
+abline(h = 0, col = 'coral2', lwd = 1)
 grid()
 
 df.aktiv <- data.frame(

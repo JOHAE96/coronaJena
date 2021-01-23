@@ -4,7 +4,7 @@ corona <- read.csv2(url, sep=",")
 
 #corona <- corona[!(corona$zeit == 1640991599),] # remove row with the wrong date
 
-days = 30
+days = 80
 
 no.rows <- nrow(corona)
 
@@ -12,7 +12,7 @@ if (days > no.rows) {
   days = no.rows
 }
 
-seit = no.rows-days  
+seit = no.rows-days
 
 par(mfcol = c(3, 2)) #for multiple plots
 
@@ -31,12 +31,12 @@ df.7days <- data.frame(
 )
 
 
-plot(df.7days[seit:no.rows,], xlab = "date", ylab = "7 Tage index", main = "7-Tage Index", col=ifelse(df.7days[seit:no.rows,2] > 200,
+plot(df.7days[seit:no.rows,], xlab = "date", ylab = "7 Tage Inzidenz", main = "7-Tage Inzidenz", col=ifelse(df.7days[seit:no.rows,2] > 200,
                                                                                                       "purple",
                                                                                                       ifelse(df.7days[seit:no.rows,2] > 100,
-                                                                                                             "blue", 
+                                                                                                             "blue",
                                                                                                               ifelse(df.7days[seit:no.rows,2] > 50,
-                                                                                                                   "red", 
+                                                                                                                   "red",
                                                                                                                    ifelse(df.7days[seit:no.rows,2] > 35,
                                                                                                                           "yellow",
                                                                                                                           "black")))
